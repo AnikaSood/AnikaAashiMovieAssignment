@@ -21,7 +21,7 @@ public class SongQueryTable {
 			
 	ArrayList<Item> stuffs = connect();
 	
-	System.out.print("Queried \n");
+	System.out.print("Queried: \n");
 	for(Item thing:stuffs)
 	{
 		System.out.println(thing.get("Title"));
