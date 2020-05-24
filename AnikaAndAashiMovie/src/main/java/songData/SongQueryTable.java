@@ -21,7 +21,7 @@ public class SongQueryTable {
 			
 	ArrayList<Item> stuffs = connect();
 	
-	System.out.print("made it");
+	System.out.print("Queried \n");
 	for(Item thing:stuffs)
 	{
 		System.out.println(thing.get("Title"));
@@ -48,9 +48,9 @@ public class SongQueryTable {
             .build();
 
 		DynamoDB dynamoDB = new DynamoDB(client);
-	    Table table = dynamoDB.getTable("Songs");
+	    Table table = dynamoDB.getTable("Songs2");
 	    ScanRequest scanRequest = new ScanRequest()
-	    	    .withTableName("Songs");
+	    	    .withTableName("Songs2");
 
 
 	    ScanResult result = client.scan(scanRequest);
@@ -59,7 +59,7 @@ public class SongQueryTable {
 
 	    for(int x = 1; x <= result.getCount(); x++)
 	    {
-	    	item = table.getItem("Title", "Artist");
+	    	item = table.getItem("Number", x);
 	    	itemList.add(item);
 	 
 	    }
