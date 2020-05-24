@@ -10,6 +10,7 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.Table;
+import com.amazonaws.services.dynamodbv2.document.spec.GetItemSpec;
 import com.amazonaws.services.dynamodbv2.model.ScanRequest;
 import com.amazonaws.services.dynamodbv2.model.ScanResult;
 
@@ -19,6 +20,7 @@ public class SongQueryTable {
 	{
 			
 	ArrayList<Item> stuffs = connect();
+	
 	System.out.print("made it");
 	for(Item thing:stuffs)
 	{
@@ -37,10 +39,10 @@ public class SongQueryTable {
             throw new AmazonClientException(
                     "Cannot load the credentials from the credential profiles file. " +
                     "Please make sure that your credentials file is at the correct " +
-                    "location (/Users/johnmortensen/.aws/credentials), and is in valid format.",
+                    "location (/Users/anikasood/.aws/credentials), and is in valid format.",
                     e);
         }
-        AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
+       AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
         	.withCredentials(credentialsProvider)
             .withRegion("us-west-1")
             .build();
@@ -53,12 +55,11 @@ public class SongQueryTable {
 
 	    ScanResult result = client.scan(scanRequest);
 	    Item item;
+	   
 
 	    for(int x = 1; x <= result.getCount(); x++)
 	    {
-
 	    	item = table.getItem("Title", "Artist");
-
 	    	itemList.add(item);
 	 
 	    }
